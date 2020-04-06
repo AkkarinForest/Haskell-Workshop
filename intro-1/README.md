@@ -422,7 +422,65 @@ Prelude Data.List.Extra> toFirstThreeUpper "hello"
 
 </details>
 
+## Types
+
+### Type signatures
+
+While using the GHCi we don't write type signatures, but we will use them while writing any projects. And it's helpful to know them now - it will be indispensable for understanding doc and compilation errors.
+
+Type signatures look like so:
+
+```haskell
+age :: Int
+age = 17
+
+addOne :: Int -> Int
+addOne x = x + 1
+```
+
+Type signatures are not obligatory. If we wrote:
+
+```haskell
+age = 17
+
+addOne x = x + 1
+```
+
+it would work exactly the same. The compiler can infere types and in this simple example it would be obvious what they are. But it's a good practice to write them. They improve redeability, and in more advance cases (like reading form user input or parsing JSON) will be necesarry to avoid ambiguity.
+
+Let's look closer at some type signatures.
+
+```haskell
+greet :: String -> String -> String
+greet form name = form ++ " " ++ name
+```
+
+Given a function that takes `n` arguments it's type signature will have `n+1` types. The last one being the type of the returned value.
+This `greet` function takes two arguments. We can see from:
+
+- first two types in `greet :: String -> String -> ...` that both arguments are `String`s,
+- the last type in `greet :: ... -> String` that the return value is also a `String`.
+
+```haskell
+Prelude> :hoogle replicate
+Prelude replicate :: Int -> a -> [a]
+```
+
+Again, the last value is the type that the function will return, all the rest are the types of arguments. From this line in the docs, we can learn that this function needs two arguments:
+
+- an `Int` that will indicate how many times we want to replicate something
+- and some mystical type `a`. What is that? In type signatures lower case letters indicate that a value can have more than one type. In this case it could be anything: number, string, bool... Whatever you provide the function will replicate it and returs a list of that objects. Because the letter `a` is in both places `a -> [a]` this means that the returned list will have the same types as the provided values. Try to guess the result of the following, which one will return an error? Check your answers in the GHCi:
+
+```haskell
+Prelude> replicate 3 "hi"
+Prelude> replicate 2 True
+Prelude> replicate 3 42
+Prelude> replicate 2.5 42
+Prelude> replicate 3 2.5
+```
+
 ## Strong vs Weak Typing
+
 ## Immutable
 
 # [Next chapter: intro-2](../intro-2)
