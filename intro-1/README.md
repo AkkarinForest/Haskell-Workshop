@@ -354,9 +354,9 @@ this is useful in case you want to partially apply an operator (eg `plusOne`). F
 plusTwo x =  (+) 1 $ (+) 1 x
 ```
 
-in other words, we preloaded the sum function with the first term (ie `1`) so that the function `(+) 1` expects the second term to perform the addition.
+in other words, we partially applied the sum function with the first term (ie `1`) so that the function `(+) 1` expects the second term to perform the addition.
 
-Fill the `...` using `$` and preloading functions where needed:
+Fill the `...` using `$` and partially applied functions where needed:
 
 <details>
   <summary>Hint</summary>
