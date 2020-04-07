@@ -17,7 +17,7 @@ That means the compiler
 Functions
 
 - are equivalent of ruby methods and are the [basic building blocks](#functions)
-- can be [piped](#the-pipe-operator)
+- can be [piped](#piping-functions)
 - can be [passed as an argument](#functions-passed-as-arguments)
 - can be [anonymous aka lambdas](#anonymous-functions-aka-lambdas)
 - can be [partially applied](#partial-application)
@@ -116,7 +116,7 @@ You might be familiar with a similar trick with `<|` in Elm:
 sum 1 <| sum 2 3
 ```
 
-### The pipe operator
+### Piping functions
 
 One could write
 
