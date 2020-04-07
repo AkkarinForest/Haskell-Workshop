@@ -42,7 +42,7 @@ The following method in Ruby
 
 ```ruby
 def greet(name)
-  "hello " ++ name
+  "hello " + name
 end
 ```
 
@@ -71,7 +71,7 @@ greet str1 str2 = str1 ++ " " ++ str2
 </details>
 </br>
 
-What if you want to pass the result of a function as an argument?
+What if you want to pass the result of a method as an argument?
 
 ```ruby
 def sum(a, b)
@@ -82,7 +82,7 @@ sum(1, sum(2, 3))
 -> 6
 ```
 
-Since in Haskell, we use spaces instead of commas to separate the arguments you need to use the parenthesis to inform the compiler what is `a` and `b`.
+Since in Haskell, we use spaces instead of commas to separate the arguments you need to use the parentheses to inform the compiler what is `a` and `b`:
 
 ```haskell
 sum a b = a + b
@@ -98,7 +98,7 @@ If you omit the parens and write `sum 1 sum 2 3`, Haskell is going to interpret 
 name and `1 sum 2 3` as the four arguments you want to pass to the `sum` function which is not what we
 want.
 
-But we all know that parenthesis have an irritating habit of loosing the other half. However in Haskell there is another, more popular way. These are equivalent:
+But we all know that parentheses have an irritating habit of loosing the other half. However in Haskell there is another, more popular way. These are equivalent:
 
 ```haskell
 sum 1 (sum 2 3)
@@ -108,9 +108,9 @@ sum 1 $ sum 2 3
 -> 6
 ```
 
-Of course the technic with a `$` sign can only be use for the last argument, but this is usually enough.
+The `$` sign can only be use for the last argument, but this is usually enough.
 
-You might be familiar with a similar trick with `<|` in Elm
+You might be familiar with a similar trick with `<|` in Elm:
 
 ```elm
 sum 1 <| sum 2 3
