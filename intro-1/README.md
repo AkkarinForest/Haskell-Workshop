@@ -16,7 +16,7 @@ That means the compiler
 
 Functions
 
-- are equivalent of ruby methods and are the [basic building blocks](#functions)
+- are equivalent of Ruby methods and are the [basic building blocks](#functions)
 - can be [piped](#piping-functions)
 - can be [passed as an argument](#functions-passed-as-arguments)
 - can be [anonymous aka lambdas](#anonymous-functions-aka-lambdas)
