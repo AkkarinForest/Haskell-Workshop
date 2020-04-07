@@ -17,7 +17,7 @@ That means the compiler
 Functions
 
 - are equivalent of ruby methods and are the [basic building blocks](#functions)
-- can be [composed](#functions-composition)
+- can be [piped](#the-pipe-operator)
 - can be [passed as an argument](#functions-passed-as-arguments)
 - can be [anonymous aka lambdas](#anonymous-functions-aka-lambdas)
 - can be [partially applied](#partial-application)
@@ -116,7 +116,7 @@ You might be familiar with a similar trick with `<|` in Elm:
 sum 1 <| sum 2 3
 ```
 
-### Functions composition
+### The pipe operator
 
 One could write
 
@@ -127,7 +127,7 @@ reverseTwice "hello"
 -> "hello"
 ```
 
-In Haskell the dolar (`$`) operator allows you to feed the result of an expression on the right to the next function on the left. Therefore, we can refactor the previous example to
+In Haskell the dollar (`$`) operator allows you to feed the result of an expression on the right to the next function on the left. Therefore, we can refactor the previous example to
 
 ```haskell
 reverseTwice string = reverse $ reverse string
