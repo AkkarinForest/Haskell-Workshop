@@ -175,7 +175,7 @@ isLengthEven string = even $ length string
 
 ### Functions passed as arguments
 
-In ruby you can pass methods as arguments:
+In Ruby you can pass methods as arguments:
 
 ```ruby
 >> def shout(sen)
@@ -184,22 +184,23 @@ In ruby you can pass methods as arguments:
 => :shout
 
 >> def andMore(sen)
->> sen + "..."
+>>   sen + "..."
 >> end
 => :andMore
 
 >> def greet(name, fnc)
->> fnc.call("hello " + name)
+>>   fnc.call("hello " + name)
 >> end
 => :greet
 
 >> greet("haskell", method(:andMore))
 => "hello haskell..."
+
 >> greet("haskell", method(:shout))
 => "HELLO HASKELL"
 ```
 
-It might be uncommon in ruby, but if you are familiar with JavaScript you've probably seen this:
+It might be uncommon in Ruby, but if you are familiar with JavaScript you've probably seen this:
 
 ```js
 function shout(sentence) {
