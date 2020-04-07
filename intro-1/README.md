@@ -427,7 +427,7 @@ Prelude Data.List.Extra> toFirstThreeUpper "hello"
 
 ### Type signatures
 
-While using the GHCi we don't write type signatures, but we will use them while writing any projects. And it's helpful to know them now - it will be indispensable for understanding doc and compilation errors.
+While using the GHCi we don't write type signatures, but we will use them while writing any projects. And it's helpful to know them now - it will be indispensable for understanding docs and compilation errors.
 
 Type signatures look like so:
 
@@ -447,7 +447,7 @@ age = 17
 addOne x = x + 1
 ```
 
-it would work exactly the same. The compiler can infere types and in this simple example it would be obvious what they are. But it's a good practice to write them. They improve redeability, and in more advance cases (like reading form user input or parsing JSON) will be necesarry to avoid ambiguity.
+it would work exactly the same. The compiler can infer types and in this simple example it would be obvious what they are. But it's a good practice to write them. They improve readability and, in more advance cases (like reading form user input or parsing JSON), will be necesarry to avoid ambiguity.
 
 Let's look closer at some type signatures.
 
