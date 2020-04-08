@@ -1,6 +1,6 @@
 # Intro 1
 
-Haskell is [functional](#functional-language), [statically typed](#types) language.
+Haskell is a [functional](#functional-language), [statically typed](#types) language.
 
 That means the compiler
 
@@ -14,7 +14,7 @@ Functions
 - are equivalent of Ruby methods and are the [basic building blocks](#functions)
 - can be [piped](#piping-functions)
 - can be [passed as an argument](#functions-passed-as-arguments)
-- can be [anonymous aka lambdas](#anonymous-functions-aka-lambdas)
+- can be [anonymous (aka lambdas)](#anonymous-functions-aka-lambdas)
 - can be [partially applied](#partial-application)
 
 ### Functions
@@ -93,7 +93,9 @@ If you omit the parens and write `sum 1 sum 2 3`, Haskell is going to interpret 
 name and `1 sum 2 3` as the four arguments you want to pass to the `sum` function which is not what we
 want.
 
-But we all know that parentheses have an irritating habit of loosing the other half. However in Haskell there is another, more popular way. These are equivalent:
+### Chaining functions
+
+We all know that parentheses have an irritating habit of loosing the other half. However, in Haskell there is another, more popular way. These are equivalent:
 
 ```haskell
 sum 1 (sum 2 3)
@@ -103,51 +105,27 @@ sum 1 $ sum 2 3
 -> 6
 ```
 
-The `$` sign can only be use for the last argument, but this is usually enough.
-
 You might be familiar with a similar trick with `<|` in Elm:
 
 ```elm
 sum 1 <| sum 2 3
 ```
 
-### Piping functions
-
-One could write
-
-```haskell
-reverseTwice string = reverse (reverse string)
-
-reverseTwice "hello"
--> "hello"
-```
-
-In Haskell the dollar (`$`) operator allows you to feed the result of an expression on the right to the next function on the left. Therefore, we can refactor the previous example to
-
-```haskell
-reverseTwice string = reverse $ reverse string
-
-reverseTwice "hello"
--> "hello"
-```
-
-or even
-
-```haskell
-reverseThrice string = reverse $ reverse $ reverse string
-
-reverseTwice "hello"
--> "olleh"
-```
-
-Notice that the function preceding the `$` must accept 1 and only 1 argument which must be of the same type of what the following function returns.
+The dollar (`$`) operator allows you to feed the result of an expression on the right to the next function on the left.
 
 Fill the `...` using `$`:
 
 <details>
   <summary>Hint</summary>
 
-[`even`](http://zvon.org/other/haskell/Outputprelude/even_f.html) and [`length`](http://zvon.org/other/haskell/Outputprelude/length_f.html) are your friends.
+You can use [`even`](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:even) and [`length`](https://hackage.haskell.org/package/base-4.12.0.0/docs/Prelude.html#v:length) functions. Here are some usage examples:
+
+```haskell
+Prelude> even 3
+False
+Prelude> length "some string"
+11
+```
 
 </details>
 <br />
@@ -170,32 +148,7 @@ isLengthEven string = even $ length string
 
 ### Functions passed as arguments
 
-In Ruby you can pass methods as arguments:
-
-```ruby
->> def shout(sen)
->>  sen.upcase
->> end
-=> :shout
-
->> def andMore(sen)
->>   sen + "..."
->> end
-=> :andMore
-
->> def greet(name, fnc)
->>   fnc.call("hello " + name)
->> end
-=> :greet
-
->> greet("haskell", method(:andMore))
-=> "hello haskell..."
-
->> greet("haskell", method(:shout))
-=> "HELLO HASKELL"
-```
-
-It might be uncommon in Ruby, but if you are familiar with JavaScript you've probably seen this:
+If you are familiar with JavaScript you might have seen that functions can be passed as arguments. Consider:
 
 ```js
 function shout(sentence) {
@@ -217,6 +170,26 @@ greet("Haskell", andMore)
 -> "hello haskell..."
 ```
 
+It's also possible in Ruby, although not commonly used:
+
+```ruby
+>> shout = ->(str) { str.upcase }
+=> #<Proc:0x007fcce51eaa78@(irb):18 (lambda)>
+
+>> andMore = ->(str) { str + "..." }
+=> #<Proc:0x007fcce51da498@(irb):19 (lambda)>
+
+>> def greet(name, fnc)
+>>   fnc.call("hello " + name)
+>> end
+=> :greet
+
+>> greet("haskell", shout)
+=> "HELLO HASKELL"
+>> greet("haskell", andMore)
+=> "hello haskell..."
+```
+
 Try to achieve the same functionality in Haskell. Fill in the `...`:
 
 ```haskell
@@ -235,19 +208,13 @@ greet "Haskell" andMore
 
 <details>
   <summary>Hint</summary>
-Try searching with:
 
-```haskell
-Prelude> :hoogle upper
-...
-Data.List.Extra upper :: String -> String
-...
-```
-
-Seems like you'll need to import:
+You might use [`upper`](https://hackage.haskell.org/package/extra-1.7.1/docs/Data-List-Extra.html#v:upper) function. Emaple usage:
 
 ```haskell
 Prelude> import Data.List.Extra
+Prelude Data.List.Extra> upper "haskell"
+"HASKELL"
 ```
 
 </details>
@@ -282,10 +249,10 @@ or anonymous (lambda)
 \a b -> a + b
 ```
 
-Fill the `...` by using lambdas instead of a named function like in the previous exercise (ie `shout`, `andMore`)
+Fill the `...`. Instead of using `shout` and `andMore` like we did before write an anonymous function.
 
 ```haskell
-greet "Haskell" ...
+greet "Haskell" (\... -> ...)
 -> "HELLO ELM!"
 
 greet "Haskell" ...
@@ -319,104 +286,34 @@ Prelude> greetInFrench "haskell"
 "salut haskell"
 ```
 
-Fill the `...` by using `sum`
+Fill the `...` by defining and using a `sum` function:
 
 ```haskell
-sum a b = a + b
-
-plusOne x = ...
-
-plusOne 2
--> 3
-
-plusTwo x = ...
-
-plusTwo 1
--> 3
+Prelude> sum a b = a + b
+Prelude> addOne = ...
+Prelude> addOne 2
+3
+Prelude> addTwo = ...
+Prelude> addTwo 40
+42
 ```
 
-Notice that you can transform an infix operator to a prefix operator by surrounding it with `()`. In other words the following are equivalent:
+We had two examples `greet` and `sum` functions that take two arguments each. By providing only the first argument we created a new function. But `+` is also just function that takes two arguments and adds them up. For conventional reasons we write it between the arguments. But we can transform an infix operator to a prefix operator by surrounding it with parentheses. In other words the following are equivalent:
 
 ```haskell
-sum a b = a + b
-
-sum a b = (+) a b
+Prelude> 40 + 2
+42
+Prelude> (+) 40 2
+42
 ```
 
-This is useful in case you want to partially apply an operator (eg `plusOne`). For example:
+We can use this to shorten the previous code
 
 ```haskell
-plusTwo x =  (+) 1 $ (+) 1 x
+Prelude> addOne = (+) 1
+Prelude> addOne 2
+3
 ```
-
-in other words, we partially applied the sum function with the first term (ie `1`) so that the function `(+) 1` expects the second term to perform the addition.
-
-Fill the `...` using `$` and partially applied functions where needed:
-
-<details>
-  <summary>Hint</summary>
-
-```haskell
-Prelude> :hoogle replicate
-Prelude replicate :: Int -> a -> [a]
-
-Prelude> :hoogle upper
-...
-Data.List.Extra upper :: String -> String
-...
-```
-
-</details>
-
-```haskell
-repeatOutLoud string = ...
-
-repeatOutLoud "ha"
--> "HAHAHA"
-```
-
-<details>
-  <summary>Solution</summary>
-
-```haskell
-Prelude Data.List.Extra> repeatOutLoud string = concat $ replicate 3 $ upper string
-Prelude Data.List.Extra> repeatOutLoud "ha"
-"HAHAHA"
-```
-
-</details>
-<br />
-
-And again:
-
-<details>
-  <summary>Hint</summary>
-
-```haskell
-Prelude> :hoogle take
-Prelude take :: Int -> [a] -> [a]
-```
-
-</details>
-
-```haskell
-toFirstThreeUpper string =
-    ...
-
-toFirstThreeUpper "hello"
--> "HEL"
-```
-
-<details>
-  <summary>Solution</summary>
-
-```haskell
-Prelude Data.List.Extra> toFirstThreeUpper string = upper $ take 3 string
-Prelude Data.List.Extra> toFirstThreeUpper "hello"
-"HEL"
-```
-
-</details>
 
 ## Types
 
@@ -430,6 +327,12 @@ Type signatures look like so:
 age :: Int
 age = 17
 
+oneLetter :: Char
+oneLetter = 'h'
+
+name :: String
+name = "Haskell"
+
 addOne :: Int -> Int
 addOne x = x + 1
 ```
@@ -438,36 +341,58 @@ Type signatures are not obligatory. If we wrote
 
 ```haskell
 age = 17
+name = "Haskell"
 
 addOne x = x + 1
 ```
 
 it would work exactly the same. The compiler can infer types and in this simple example it would be obvious what they are. But it's a good practice to write them. They improve readability and, in more advance cases (like reading form user input or parsing JSON), will be necesarry to avoid ambiguity.
 
-Let's look closer at some type signatures.
+#### Lists
+
+In Haskell all elements of the list must be of the same type. It's indicated in the type signature like so:
+
+```haskell
+lotto :: [Int]
+lotto = [3, 8, 19, 32, 37, 41]
+
+truths :: [Bool]
+truths = [True, False, True]
+```
+
+#### Functions
+
+Let's look closer at some function's type signatures.
 
 ```haskell
 greet :: String -> String -> String
 greet form name = form ++ " " ++ name
 ```
 
-Given a function that takes `n` arguments it's type signature will have `n+1` types. The last one being the type of the returned value.
-This `greet` function takes two arguments. We can see from:
+This `greet` function:
 
-- first two types in `greet :: String -> String -> ...` that both arguments are `String`s,
-- the last type in `greet :: ... -> String` that the return value is also a `String`.
+- takes two arguments. From first two values after `::` in `:: String -> String ...` we know that both arguments are `String`'s,
+- From the last value in `greet :: ... -> String` we know the return value is also of type `String`.
 
-Earlier we saw:
+In general given a function that takes `n` arguments it's type signature will have `n + 1` types. The last one being the type of the returned value, and all the previous ones types of the arguments.
+
+Let's examine a `replicate` function:
 
 ```haskell
-Prelude> :hoogle replicate
-Prelude replicate :: Int -> a -> [a]
+replicate :: Int -> a -> [a]
 ```
 
-Again, the last value is the type that the function will return, all the rest are the types of arguments. From this line in the docs, we can learn that this function needs two arguments:
+From signature we can learn that this function:
 
-- an `Int` that will indicate how many times we want to replicate something
-- and some mystical type `a`. What is that? In type signatures lower case letters indicate that a value can have more than one type. In this case it could be anything: number, string, bool... Whatever you provide the function will replicate it and returs a list of that objects. Because the letter `a` is in both places `a -> [a]` this means that the returned list will have the same types as the provided argument. Try to guess the result of the following, which one will return an error? Check your answers in the GHCi:
+- takes an argument of type `Int` (that will indicate how many times we want to replicate something),
+- then takes some mystical type `a`,
+- and finally it returns a list of these object of type `a`.
+
+The thing is that a function `replicate` can be useful with multiple types. If the authors of Haskell created a function like `replicate :: Int -> String -> [String]` they would have to create multiple other function to replicate `Int`'s, `Bool`'s and so on.
+
+To merge all these `replicate` functions the specific type is replaced with a general term `a`. In this case it could be anything: number, string, bool... Whatever you provide the function will replicate it and return a list of that objects.
+
+Try to guess the result of the following, which one will return an error? Check your answers in the GHCi:
 
 ```haskell
 Prelude> replicate 3 "hi"
@@ -477,9 +402,13 @@ Prelude> replicate 2.5 42
 Prelude> replicate 3 2.5
 ```
 
+#### String type
+
+In it's basic version Haskell considers strings to be just a list of characters. However you will notice `String` and `Text` used quite often as well. For now you can thing of them as the same types. Later we will discover what possibilities they provide.
+
 ## Typing Checking
 
-Both Haskell we can check the type of an expression with the following:
+In Haskell we can check the type of an expression with the following:
 
 ```haskell
 Prelude> :type 1
@@ -505,7 +434,7 @@ In Ruby we can do a similar thing with:
 => String
 ```
 
-Both languages use this knowledge to check with operations are not possible:
+Both languages use this knowledge to check which operations are not possible:
 
 ```haskell
 Prelude> 1 + "hello"
@@ -517,35 +446,53 @@ BOOM!
 BOOM!
 ```
 
-But in Haskell functions also have types. That means that we know the type of a returned value even before we run the function. Consider:
+#### Functions type checking
 
-```haskell
-Prelude> checkLength str = if (str == "")
-Prelude|   then "Empty String"
-Prelude|   else "Strnig has length" ++ (show $ length str)
-Prelude> :type checkLength
-checkLength :: [Char] -> [Char]
-```
+In Haskell functions also have types. That means that we know the type of a returned value even before we run the function.
 
 While in Ruby we can create functions that can return a variety of types:
 
 ```ruby
 >> def checkLength(str)
 >>   if str == ""
->>     "Empty string"
+>>     nil
 >>   else
 ?>     str.length
 >>   end
 >> end
 => :checkLength
 >>
->> checkLength("hello").class
-=> Integer
->> checkLength("").class
-=> String
+>> checkLength("haskell").even?
+=> false
+>> checkLength("").even?
+NoMethodError: undefined method 'even?' for nil:NilClass
 ```
 
-In Haskell all elements of the list must be of the same type. Consider:
+In Haskell the code won't compile unless each branch of `if` returns the same type:
+
+```haskell
+Prelude> checkLength str = if (str == "")
+Prelude|   then Nothing
+Prelude|   else length str
+
+<interactive>:15:8: error:
+    • Couldn't match expected type ...
+```
+
+So both language return an error, but notice that Ruby notices the problem only when you try to use the method, while Haskell won't let you create the method at all.
+
+Consider the following snippets that use lists:
+
+```ruby
+>> def addFirst(list)
+>>   list.first + 42
+>> end
+=> :addFirst
+>> mixedList = ["one", 2]
+=> ["one", 2]
+>> addFirst(mixedList)
+TypeError: no implicit conversion of Integer into String
+```
 
 ```haskell
 Prelude> addFirst list = (+) 42 $ head list
@@ -556,19 +503,8 @@ Prelude> mixedList = [1, "two"]
 BOOM!
 ```
 
-While in Ruby we can create list that store object of mixed types:
+Again both return an error, Ruby while executing the gaulty code, Haskell at the moment of creating a suspicious list.
 
-```ruby
->> def addFirst(list)
->>   list.first + 42
->> end
-=> :addFirst
->> addFirst([1, "two"])
-=> 43
->> addFirst(["one", 2])
-TypeError: no implicit conversion of Integer into String
-```
-
-But the important distinction in types handling is that while Ruby is an interpreted, Haskell is a compiled language. And the type checking happens during compilation. This means we would be notified of all the above errors right away. In an interpreted language, we get an error only after we try to use a piece of code. That mean we would have to notice the danger of type mismatch ourselves and write a test for it.
+Haskell is a compiled language. Type checking happens during compilation. This means we would be notified of all the above errors right away (eg on file save). In Ruby we get an error only after we try to use a piece of code. That means we would have to notice the danger of type mismatch ourselves and write a test for it.
 
 # [Next chapter: intro-2](../intro-2)
