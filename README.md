@@ -44,53 +44,10 @@ Prelude> import Data.List.Extra
 Prelude Data.List.Extra>
 ```
 
-### documentation
+### multiline code
 
-Run
-
+To enable multiline code snippets run:
 ```
-$ cabal new-install hoogle
-$ hoogle generate
-$ vim ~/.ghci
+$ echo ":set +m" >> ~/.ghci
 ```
 
-and paste the following
-
-```
-:set +m
-:def hoogle \x -> return $ ":!hoogle \"" ++ x ++ "\""
-:def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
-```
-
-Now you can quickly search the [hoogle](https://hoogle.haskell.org/) documentation in your terminal! Run the following to find all libraries that offer an `upper` function:
-
-```
-$ ghci
-Prelude> :hoogle upper
-Text.Parsec.Char upper :: Stream s m Char => ParsecT s u m Char
-Text.ParserCombinators.Parsec.Char upper :: Stream s m Char => ParsecT s u m Char
-Distribution.Compat.CharParsing upper :: CharParsing m => m Char
-Hedgehog.Gen upper :: MonadGen m => m Char
-Hedgehog.Internal.Gen upper :: MonadGen m => m Char
-Data.List.Extra upper :: String -> String
-Extra upper :: String -> String
-Text.Parser.Char upper :: CharParsing m => m Char
-Turtle.Pattern upper :: Pattern Char
-Text.ParserCombinators.HuttonMeijer upper :: Parser Char
--- plus more results not shown, pass --count=20 to see more
-```
-
-Then you can use `:doc` to see the details of a chosen function. Eg:
-
-```
-Prelude> :doc Data.List.Extra.upper
-upper :: String -> String
-extra Data.List.Extra
-Convert a string to upper case.
-
-
-upper "This is A TEST" == "THIS IS A TEST"
-upper "" == ""
-```
-
-Pretty scary? Don't worry! We will learn how to read these soon.
