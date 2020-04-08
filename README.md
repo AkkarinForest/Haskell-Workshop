@@ -37,7 +37,7 @@ $
 
 ### importing
 
-The `Prelude>` at the beginnig of each GHCi line informs us what modules we have available. By default `Prelude` is always loaded. If you need to load something else use
+The `Prelude>` at the beginning of each GHCi line informs us what modules we have available. By default `Prelude` is always loaded. If you need to load something else use
 
 ```
 Prelude> import Data.List.Extra
@@ -54,9 +54,10 @@ $ hoogle generate
 $ vim ~/.ghci
 ```
 
-and pase the following
+and paste the following
 
 ```
+:set +m
 :def hoogle \x -> return $ ":!hoogle \"" ++ x ++ "\""
 :def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""
 ```
