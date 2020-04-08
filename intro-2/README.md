@@ -30,7 +30,7 @@ fmap ... [ 1, 2 ]
 -> [ 2, 3 ]
 ```
 
-Notice that you removed the argument `x`? This is called pointfree style and most of the times encourages cleaner code.
+Notice that you removed the argument `x`? This is called the pointfree style and most of the time encourages cleaner code.
 
 Fill the `...` with `fmap` and `shout` from [intro-1](../intro-1). Solve it by both using a named function or a lambda.
 
@@ -82,8 +82,8 @@ Fill the `...` by reusing `capitalize`.
 <details>
   <summary>Hint</summary>
 
+Try to transform the sentence into single words, capitalizing each and recomposing. [`words`](https://hackage.haskell.org/package/base-4.12.0.0/docs/Data-String.html#v:words) and [`unwords`](https://hackage.haskell.org/package/base-4.12.0.0/docs/Data-String.html#v:unwords) are your friends.
 
-  Try to transform the sentence into single words, capitalizing each and recomposing. [`words`](https://hackage.haskell.org/package/base-4.12.0.0/docs/Data-String.html#v:words) and [`unwords`](https://hackage.haskell.org/package/base-4.12.0.0/docs/Data-String.html#v:unwords) are your friends.
 </details>
 
 ```haskell
@@ -150,7 +150,7 @@ boolToString True
 -> "True!!"
 ```
 
-But the beauty of `case ... of` is that the compiler checks if there's a branch for each possible value of the type. In case of boolean that doesn't really make a difference. In fact, you cannot write `if condition then value` and skip the `else`. But with more complex types it guarantees that all possible cases are covered (see Union Types for example).
+But the beauty of `case ... of` is that the compiler checks if there's a branch for each possible value of the type. In the case of boolean, that doesn't make a difference. You cannot write `if condition then value` and skip the `else`. But with more complex types it guarantees that all possible cases are covered (see Union Types for example).
 
 ## Records
 
@@ -181,7 +181,7 @@ personName newRecord
 
 ## Custom Types
 
-`Char`, `String`, `Maybe` and company are all cool types. However, sometimes we need to create our own. In Haskell, one way to achieve that, is by using the `data` keyword. For example, `Bool` could be defined as follows:
+`Char`, `String`, `Maybe` and company are all cool types. However, sometimes we need to create our own. In Haskell, one way to achieve that is by using the `data` keyword. For example, `Bool` could be defined as follows:
 
 ```haskell
 data Bool = True | False
@@ -262,9 +262,9 @@ type Status = ToDo Estimation | Doing Estimation WipDays | Done Estimation WipDa
 
 ## Maybe
 
-Up until now we haven't talked about `nil`. That's because in Haskell it does not exist. This means Haskell is immune to the ["billion dollar mistakes"](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare).
+Up until now, we haven't talked about `nil`. That's because in Haskell it does not exist. This means Haskell is immune to the ["billion dollar mistakes"](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare).
 
-`nil` is normally used to express the lack of something but unfortunaly it causes a lot of headaches.
+`nil` is normally used to express the lack of something but unfortunately, it causes a lot of headaches.
 
 ```ruby
 transform_first = ->(xs) {  xs[0].upcase }
