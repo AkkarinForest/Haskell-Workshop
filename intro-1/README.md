@@ -5,7 +5,7 @@ Haskell is a [functional](#functional-language), [statically typed](#types) lang
 That means the compiler
 
 - makes refactoring and maintaining code easy,
-- drastically reduces the amount of tests you need to write.
+- drastically reduces the number of tests you need to write.
 
 ## Functional Language
 
@@ -95,7 +95,7 @@ want.
 
 ### Chaining functions
 
-We all know that parentheses have an irritating habit of loosing the other half. However, in Haskell there is another, more popular way. These are equivalent:
+We all know that parentheses have an irritating habit of losing the other half. However, in Haskell, there is another, more popular way. These are equivalent:
 
 ```haskell
 sum 1 (sum 2 3)
@@ -111,7 +111,7 @@ You might be familiar with a similar trick with `<|` in Elm:
 sum 1 <| sum 2 3
 ```
 
-The dollar (`$`) operator allows you to feed the result of an expression on the right to the next function on the left.
+The dollar (`$`) operator allows you to feed the result of the expression on the right to the next function on the left.
 
 Fill the `...` using `$`:
 
@@ -209,7 +209,7 @@ greet "Haskell" andMore
 <details>
   <summary>Hint</summary>
 
-You might use [`upper`](https://hackage.haskell.org/package/extra-1.7.1/docs/Data-List-Extra.html#v:upper) function. Emaple usage:
+You might use [`upper`](https://hackage.haskell.org/package/extra-1.7.1/docs/Data-List-Extra.html#v:upper) function. Sample usage:
 
 ```haskell
 Prelude> import Data.List.Extra
@@ -298,7 +298,7 @@ Prelude> addTwo 40
 42
 ```
 
-We had two examples `greet` and `sum` functions that take two arguments each. By providing only the first argument we created a new function. But `+` is also just function that takes two arguments and adds them up. For conventional reasons we write it between the arguments. But we can transform an infix operator to a prefix operator by surrounding it with parentheses. In other words the following are equivalent:
+We had two examples `greet` and `sum` functions that take two arguments each. By providing only the first argument we created a new function. But `+` is also just function that takes two arguments and adds them up. For conventional reasons, we write it between the arguments. But we can transform an infix operator to a prefix operator by surrounding it with parentheses. In other words, the following are equivalent:
 
 ```haskell
 Prelude> 40 + 2
@@ -346,7 +346,7 @@ name = "Haskell"
 addOne x = x + 1
 ```
 
-it would work exactly the same. The compiler can infer types and in this simple example it would be obvious what they are. But it's a good practice to write them. They improve readability and, in more advance cases (like reading form user input or parsing JSON), will be necesarry to avoid ambiguity.
+it would work the same. The compiler can infer types and in this simple example, it would be obvious what they are. But it's a good practice to write them. They improve readability and, in more advance cases (like reading form user input or parsing JSON), will be necessary to avoid ambiguity.
 
 #### Lists
 
@@ -371,10 +371,10 @@ greet form name = form ++ " " ++ name
 
 This `greet` function:
 
-- takes two arguments. From first two values after `::` in `:: String -> String ...` we know that both arguments are `String`'s,
+- takes two arguments. From the first two values after `::` in `:: String -> String ...` we know that both arguments are `String`'s,
 - From the last value in `greet :: ... -> String` we know the return value is also of type `String`.
 
-In general given a function that takes `n` arguments it's type signature will have `n + 1` types. The last one being the type of the returned value, and all the previous ones types of the arguments.
+In general, given a function that takes `n` arguments, it's type signature will have `n + 1` types. The last one being the type of the returned value, and all the previous one's types of the arguments.
 
 Let's examine a `replicate` function:
 
@@ -382,15 +382,15 @@ Let's examine a `replicate` function:
 replicate :: Int -> a -> [a]
 ```
 
-From signature we can learn that this function:
+From signature, we can learn that this function:
 
 - takes an argument of type `Int` (that will indicate how many times we want to replicate something),
 - then takes some mystical type `a`,
-- and finally it returns a list of these object of type `a`.
+- and finally, it returns a list of these objects of type `a`.
 
-The thing is that a function `replicate` can be useful with multiple types. If the authors of Haskell created a function like `replicate :: Int -> String -> [String]` they would have to create multiple other function to replicate `Int`'s, `Bool`'s and so on.
+The thing is that a function `replicate` can be useful with multiple types. If the authors of Haskell created a function like `replicate :: Int -> String -> [String]` they would have to create multiple other functions to replicate `Int`'s, `Bool`'s and so on.
 
-To merge all these `replicate` functions the specific type is replaced with a general term `a`. In this case it could be anything: number, string, bool... Whatever you provide the function will replicate it and return a list of that objects.
+To merge all these `replicate` functions the specific type is replaced with a general term `a`. In this case, it could be anything: number, string, bool... Whatever you provide the function will replicate it and return a list of those objects.
 
 Try to guess the result of the following, which one will return an error? Check your answers in the GHCi:
 
@@ -404,7 +404,7 @@ Prelude> replicate 3 2.5
 
 #### String type
 
-In it's basic version Haskell considers strings to be just a list of characters. However you will notice `String` and `Text` used quite often as well. For now you can thing of them as the same types. Later we will discover what possibilities they provide.
+In its basic version, Haskell considers strings to be just a list of characters. However, you will notice `String` and `Text` used quite often as well. For now, you can think of them as the same types. Later we will discover what possibilities they provide.
 
 ## Typing Checking
 
@@ -479,7 +479,7 @@ Prelude|   else length str
     • Couldn't match expected type ...
 ```
 
-So both language return an error, but notice that Ruby notices the problem only when you try to use the method, while Haskell won't let you create the method at all.
+So both languages return an error but notice that Ruby notices the problem only when you try to use the method, while Haskell won't let you create the method at all.
 
 Consider the following snippets that use lists:
 
@@ -503,8 +503,8 @@ Prelude> mixedList = [1, "two"]
 BOOM!
 ```
 
-Again both return an error, Ruby while executing the gaulty code, Haskell at the moment of creating a suspicious list.
+Again both return an error, Ruby while executing the faulty code, Haskell at the moment of creating a suspicious list.
 
-Haskell is a compiled language. Type checking happens during compilation. This means we would be notified of all the above errors right away (eg on file save). In Ruby we get an error only after we try to use a piece of code. That means we would have to notice the danger of type mismatch ourselves and write a test for it.
+Haskell is a compiled language. Type checking happens during compilation. This means we would be notified of all the above errors right away (eg on file save). In Ruby, we get an error only after we try to use a piece of code. That means we would have to notice the danger of type mismatch ourselves and write a test for it.
 
 # [Next chapter: intro-2](../intro-2)
