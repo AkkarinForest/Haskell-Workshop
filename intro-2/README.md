@@ -286,7 +286,7 @@ annotation of `safeHead` is `[a] -> Maybe a`.
 ```haskell
 -- safeHead :: [a] -> Maybe a
 safeHead [] = Nothing
-safeHead x:xs = Just x
+safeHead (x:xs) = Just x
 
 transformFirst xs = case safeHead xs of
   Just string -> upper string
