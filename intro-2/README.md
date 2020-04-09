@@ -347,7 +347,7 @@ parse2 ["Beans", "I", "like", "them", "very", "much"]
   <summary>Solutions</summary>
 
   ```haskell
-  parse xs = fmap (\string -> reverse ((++) "!" (reverse (upper string)))) (safeHead xs)
+  parse xs = fmap (\string -> (upper string) ++ "!") (safeHead xs)
 
   parse2 xs = unwords (fmap upper (reverse (tail xs)))
   ```
