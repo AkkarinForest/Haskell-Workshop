@@ -284,7 +284,7 @@ returns `Nothing` if there's no first element and `Just element` otherwise. That
 annotation of `safeHead` is `[a] -> Maybe a`.
 
 ```haskell
-safeHead :: [a] -> Maybe a
+-- safeHead :: [a] -> Maybe a
 safeHead [] = Nothing
 safeHead x:xs = Just x
 
