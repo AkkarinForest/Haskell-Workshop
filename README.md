@@ -6,13 +6,14 @@ Run
 
 ```
 $ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+$ cabal new-install --lib extra
 ```
 
 and press enter when prompted.
 Verify that it worked by typing `ghci`. You should see:
 
 ```
-$ ghci
+$ ghci -package extra
 GHCi, version 8.8.3: https://www.haskell.org/ghc/  :? for help
 Prelude>
 ```
@@ -24,7 +25,7 @@ GHCi stands for Glasgow Haskell Compiler interactive. You can use this to execut
 ### starting and quiting
 
 ```
-$ ghci
+$ ghci -package extra
 GHCi, version 8.8.3: https://www.haskell.org/ghc/  :? for help
 Prelude>
 ```
