@@ -134,8 +134,8 @@ first tuple
 ```haskell
 boolToString bool =
     case bool of
-        true -> "True!!"
-        false -> "False :("
+        True -> "True!!"
+        False -> "False :("
 
 boolToString True
 -> "True!!"
