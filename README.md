@@ -47,7 +47,35 @@ Prelude Data.List.Extra>
 
 ### multiline code
 
-To enable multiline code snippets run:
+Some exercises will require you to input multiple lines in GHCi for a single expression. Let's see how to do that:
+
+```
+$ ghci -package extra
+
+-- define a constant `a` whose value is 1 on one line
+a = 1
+
+-- print the value of `a`
+a
+-> 1
+
+-- define a constant `b` whose value is 2 on multiple lines
+
+
+-- enable multiline (you need to do it once per ghci session)
+:set +m
+
+let
+  b =
+    2
+--  PRESS ENTER
+
+-- print the value of `b`
+b
+-> 2
+```
+
+To enable multiline for all GHCi sessions:
 ```
 $ echo ":set +m" >> ~/.ghci
 ```
