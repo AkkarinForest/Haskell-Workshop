@@ -132,10 +132,12 @@ first tuple
 ### `case ... of`
 
 ```haskell
+let
 boolToString bool =
     case bool of
         True -> "True!!"
         False -> "False :("
+-- ENTER
 
 boolToString True
 -> "True!!"
@@ -195,11 +197,13 @@ data Ticket = Ticket { title :: String, status :: Status }
 
 ticket = Ticket { title = "learn Haskell!", status = Doing }
 
+let
 ticketToString ticket =
   case status ticket of
     ToDo -> "ToDo:" ++ " " ++ title ticket
     Doing -> "Doing:" ++ " " ++ title ticket
     Done -> "Done:" ++ " " ++ title ticket
+-- ENTER
 
 ticketToString ticket
 -> "Doing: learn Haskell!"
@@ -285,8 +289,10 @@ annotation of `safeHead` is `[a] -> Maybe a`.
 
 ```haskell
 -- safeHead :: [a] -> Maybe a
+let
 safeHead [] = Nothing
 safeHead (x:xs) = Just x
+-- ENTER
 
 transformFirst xs = case safeHead xs of
   Just string -> upper string
