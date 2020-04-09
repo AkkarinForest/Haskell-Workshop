@@ -11,11 +11,10 @@ That means the compiler
 
 Functions
 
-- are equivalent of Ruby methods and are the [basic building blocks](#functions)
-- can be [piped](#piping-functions)
-- can be [passed as an argument](#functions-passed-as-arguments)
-- can be [anonymous (aka lambdas)](#anonymous-functions-aka-lambdas)
-- can be [partially applied](#partial-application)
+- are equivalent of Ruby methods and are the [basic building blocks](#functions),
+- can be [passed as an argument](#functions-passed-as-arguments),
+- can be [anonymous (aka lambdas)](#anonymous-functions-aka-lambdas),
+- can be [partially applied](#partial-application).
 
 ### Functions
 
@@ -30,7 +29,7 @@ end
 can be written as a function in Haskell
 
 ```haskell
-greet = "hello"
+Prelude> greet = "hello"
 ```
 
 The following method in Ruby
@@ -44,23 +43,22 @@ end
 can be written in Haskell as
 
 ```haskell
-greet name = "hello " ++ name
+Prelude> greet name = "hello " ++ name
 ```
 
 Fill in the `...`:
 
 ```haskell
-greet str1 str2 = ...
-
-greet "Hey" "Haskell"
--> "Hey Haskell"
+Prelude> greet str1 str2 = ...
+Prelude> greet "Hey" "Haskell"
+"Hey Haskell"
 ```
 
 <details>
   <summary>Solution</summary>
 
 ```haskell
-greet str1 str2 = str1 ++ " " ++ str2
+Prelude> greet str1 str2 = str1 ++ " " ++ str2
 ```
 
 </details>
@@ -92,8 +90,6 @@ sum 1 (sum 2 3)
 If you omit the parens and write `sum 1 sum 2 3`, Haskell is going to interpret `sum` as the function
 name and `1 sum 2 3` as the four arguments you want to pass to the `sum` function which is not what we
 want.
-
-### Chaining functions
 
 We all know that parentheses have an irritating habit of losing the other half. However, in Haskell, there is another, more popular way. These are equivalent:
 
@@ -131,17 +127,16 @@ Prelude> length "some string"
 <br />
 
 ```haskell
-isLengthEven string = ...
-
-isLengthEven "hello"
--> False
+Prelude> isLengthEven string = ...
+Prelude> isLengthEven "hello"
+False
 ```
 
 <details>
   <summary>Solution</summary>
 
 ```haskell
-isLengthEven string = even $ length string
+Prelude> isLengthEven string = even $ length string
 ```
 
 </details>
@@ -193,6 +188,13 @@ It's also possible in Ruby, although not commonly used:
 Try to achieve the same functionality in Haskell. Fill in the `...`:
 
 ```haskell
+Prelude> shout str = ...
+Prelude> andMore str = ...
+Prelude> greet name fnc = ...
+Prelude> greet "haskell" shout
+"HELLO HASKELL"
+Prelude> greet "haskell" andMore
+"hello haskell..."
 shout str = ...
 
 andMore str = ...
@@ -252,12 +254,10 @@ or anonymous (lambda)
 Fill the `...`. Instead of using `shout` and `andMore` like we did before write an anonymous function.
 
 ```haskell
-greet "Haskell" (\... -> ...)
--> "HELLO ELM!"
-
-greet "Haskell" ...
--> "hello haskell..."
-
+Prelude> greet "haskell" (\... -> ...)
+"hello haskell..."
+Prelude> greet "haskell" ...
+"HELLO HASKELL!"
 ```
 
 <details>
@@ -298,7 +298,7 @@ Prelude> addTwo 40
 42
 ```
 
-We had two examples `greet` and `sum` functions that take two arguments each. By providing only the first argument we created a new function. But `+` is also just function that takes two arguments and adds them up. For conventional reasons, we write it between the arguments. But we can transform an infix operator to a prefix operator by surrounding it with parentheses. In other words, the following are equivalent:
+We had two examples `greet` and `sum` functions that take two arguments each. By providing only the first argument we created a new function. But `+` is also just a function that takes two arguments and adds them up. For conventional reasons, we write it between the arguments. But we can transform an infix operator to a prefix operator by surrounding it with parentheses. In other words, the following are equivalent:
 
 ```haskell
 Prelude> 40 + 2
@@ -341,8 +341,8 @@ Type signatures are not obligatory. If we wrote
 
 ```haskell
 age = 17
+oneLetter = 'h'
 name = "Haskell"
-
 addOne x = x + 1
 ```
 
@@ -372,7 +372,7 @@ greet form name = form ++ " " ++ name
 This `greet` function:
 
 - takes two arguments. From the first two values after `::` in `:: String -> String ...` we know that both arguments are `String`'s,
-- From the last value in `greet :: ... -> String` we know the return value is also of type `String`.
+- from the last value in `greet :: ... -> String` we know the return value is also of type `String`.
 
 In general, given a function that takes `n` arguments, it's type signature will have `n + 1` types. The last one being the type of the returned value, and all the previous one's types of the arguments.
 
@@ -404,7 +404,7 @@ Prelude> replicate 3 2.5
 
 #### String type
 
-In its basic version, Haskell considers strings to be just a list of characters. However, you will notice `String` and `Text` used quite often as well. For now, you can think of them as the same types. Later we will discover what possibilities they provide.
+In its basic version, Haskell considers strings to be just a list of characters. In the documentation you will often see it as `[Char]`. However, by using libraries and language extensions in the code we will often use `String` and `Text`. For now, you can think of them as the same types. Later we will discover what different possibilities they provide.
 
 ## Typing Checking
 
@@ -479,7 +479,7 @@ Prelude|   else length str
     • Couldn't match expected type ...
 ```
 
-So both languages return an error but notice that Ruby notices the problem only when you try to use the method, while Haskell won't let you create the method at all.
+So both languages return an error. Ruby notices the problem when you try to use the method, while Haskell won't let you create the method at all.
 
 Consider the following snippets that use lists:
 
@@ -505,6 +505,6 @@ BOOM!
 
 Again both return an error, Ruby while executing the faulty code, Haskell at the moment of creating a suspicious list.
 
-Haskell is a compiled language. Type checking happens during compilation. This means we would be notified of all the above errors right away (eg on file save). In Ruby, we get an error only after we try to use a piece of code. That means we would have to notice the danger of type mismatch ourselves and write a test for it.
+Haskell is a compiled language and type checking happens during compilation. This means we would be notified of all the above errors right away (eg on file save). In Ruby, we get an error only after we try to use a piece of code. That means we would have to notice the danger of type mismatch ourselves and write a test for it.
 
 # [Next chapter: intro-2](../intro-2)
