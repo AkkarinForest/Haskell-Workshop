@@ -1,6 +1,6 @@
 # Haskell Workshop
 
-## Instalation
+## Installation
 
 Run
 
