@@ -127,6 +127,19 @@ first ( f, s ) = f
 
 first tuple
 -> 1
+
+
+xs = [ "first", "second", "third" ]
+
+first (x:xs) = x
+
+rest (x:xs) = xs
+
+first xs
+-> "first"
+
+rest xs
+-> [ "second", "third" ]
 ```
 
 ### `case ... of`
