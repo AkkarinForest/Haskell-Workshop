@@ -60,8 +60,6 @@ a
 -> 1
 
 -- define a constant `b` whose value is 2 on multiple lines
-
-
 -- enable multiline (you need to do it once per ghci session)
 :set +m
 
