@@ -404,7 +404,7 @@ Prelude> replicate 3 2.5
 
 #### String type
 
-In its basic version, Haskell considers strings to be just a list of characters. In the documentation you will often see it as `[Char]`. However, by using libraries and language extensions in the code we will often use `String` and `Text`. For now, you can think of them as the same types. Later we will discover what different possibilities they provide.
+Haskell considers strings to be just a list of characters. For that reason `[Char]` and `String` are equivalent.
 
 ## Typing Checking
 
