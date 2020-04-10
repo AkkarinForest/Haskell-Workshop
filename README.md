@@ -10,7 +10,7 @@ $ cabal new-install --lib extra
 ```
 
 and press enter when prompted.
-Verify that it worked by typing `ghci`. You should see:
+Verify that it worked by typing `ghci -package extra`. You should see:
 
 ```
 $ ghci -package extra
