@@ -20,7 +20,7 @@ plus_one.call(1)
 -> [ 2, 3, 4 ]
 ```
 
-Fill the `...` using the [prefixed plus operator](../intro-1#functions-as-return-values) (ie `(+)`) without using the anonymous function syntax `\x -> ...`. For now, think of Haskell's lists as Ruby's arrays. Also, notice Haskell uses `fmap` and not `map`.
+Fill the `...` using the [prefixed plus operator](../intro-1#partial-application) (ie `(+)`) without using the anonymous function syntax `\x -> ...`. For now, think of Haskell's lists as Ruby's arrays. Also, notice Haskell uses `fmap` and not `map`.
 
 ```haskell
 fmap (\x -> x + 1) [ 1, 2 ]
