@@ -353,7 +353,7 @@ parse ["Beans", "I", "like", "them", "very", "much"]
 // Just "BEANS!"
 ```
 
-Fill the `...`. `parse2` uses the last 3 elements of the list.
+Fill the `...`. `parse2` uses the last 5 elements of the list.
 
 ```haskell
 parse2 xs = ...
